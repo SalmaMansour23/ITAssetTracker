@@ -1,0 +1,68 @@
+
+{
+  "entities": {
+    "AssetRequest": {
+      "title": "Asset Request",
+      "description": "Information about an IT asset request submitted by an employee.",
+      "type": "object",
+      "properties": {
+        "employee_name": {
+          "type": "string",
+          "description": "Full name of the employee."
+        },
+        "department": {
+          "type": "string",
+          "description": "Department of the employee."
+        },
+        "item_needed": {
+          "type": "string",
+          "description": "The specific asset requested."
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["Low", "Medium", "High"],
+          "description": "Urgency of the request."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Business justification for the request."
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Start date of the requested period."
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "description": "End date of the requested period."
+        },
+        "request_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date the request was made."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Pending", "Approved", "Rejected"],
+          "description": "Current status of the request."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of when the request was created."
+        }
+      },
+      "required": ["employee_name", "department", "item_needed", "priority", "reason", "start_date", "end_date", "request_date", "status"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com"]
+  },
+  "firestore": {
+    "/asset_requests/{requestId}": {
+      "schema": "AssetRequest",
+      "description": "Collection of IT asset requests."
+    }
+  }
+}
